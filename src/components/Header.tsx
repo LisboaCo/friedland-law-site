@@ -14,14 +14,17 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-navy text-primary-foreground border-b border-white/10">
         <div className="container mx-auto px-4 flex items-center justify-between h-10 text-sm">
-          <a href="tel:800-210-4878" className="flex items-center gap-2 hover:text-gold transition-colors">
+          <a href="tel:800-210-4878" className="flex items-center gap-2 text-gold hover:text-gold-dark transition-colors font-medium">
             <Phone size={14} /> 800-210-HURT
           </a>
           <div className="hidden sm:flex items-center gap-4">
-            <span className="text-xs border border-primary-foreground/30 px-2 py-0.5 rounded">Se Habla Español</span>
-            <span className="text-xs border border-primary-foreground/30 px-2 py-0.5 rounded">Falamos Português</span>
+            <button className="text-xs border border-primary-foreground/30 px-2 py-0.5 rounded hover:text-gold hover:border-gold transition-colors">
+              Se Habla Español
+            </button>
+            <button className="text-xs border border-primary-foreground/30 px-2 py-0.5 rounded hover:text-gold hover:border-gold transition-colors">
+              Falamos Português
+            </button>
           </div>
-          <CTAButton text="Free Consultation" href="/contact" variant="primary" className="!py-1.5 !px-4 !text-xs" />
         </div>
       </div>
 
