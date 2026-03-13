@@ -14,7 +14,6 @@ export const practiceAreas: PracticeArea[] = [
   { name: "Slip & Fall", slug: "slip-and-fall", icon: "AlertTriangle", category: "Premises", description: "[PLACEHOLDER] Holding property owners accountable." },
   { name: "Wrongful Death", slug: "wrongful-death", icon: "Heart", category: "Catastrophic", description: "[PLACEHOLDER] Justice for families who've lost a loved one." },
   { name: "Brain Injury (TBI)", slug: "brain-injury", icon: "Brain", category: "Catastrophic", description: "[PLACEHOLDER] Traumatic brain injury representation." },
-  { name: "Dog Bite", slug: "dog-bite", icon: "Dog", category: "Premises", description: "[PLACEHOLDER] Dog bite and animal attack claims." },
   { name: "Pedestrian Accident", slug: "pedestrian-accident", icon: "Footprints", category: "Vehicular", description: "[PLACEHOLDER] Pedestrian accident injury claims." },
 ];
 
