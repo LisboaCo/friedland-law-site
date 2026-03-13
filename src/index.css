@@ -137,3 +137,10 @@ body {
     border: none !important; 
     box-shadow: none !important;
 }
+  
+/* Ocultar a badge da plataforma Lovable */
+#lovable-badge, 
+.lovable-badge,
+[class*="lovable"] {
+    display: none !important;
+}
