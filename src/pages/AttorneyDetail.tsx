@@ -8,14 +8,17 @@ import CTAButton from "@/components/CTAButton";
 import { attorneys, seniorStaff } from "@/data/attorneys";
 import NotFound from "./NotFound";
 
-// A mesma lógica poderosa que usamos na página principal para puxar os WebPs
-const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}', { eager: true, import: 'default' });
+// Atualizado para usar a tipagem explícita do Vite ({ default: string })
+// Isso força o empacotador a ler o arquivo físico corretamente, ignorando o cache
+const images = import.meta.glob<{ default: string }>('../assets/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}', { eager: true });
 
 const getImageForSlug = (slug: string) => {
+  // Adicionamos a barra "/" antes do slug para garantir que a busca seja exata
   const matchingKey = Object.keys(images).find(key => 
-    key.toLowerCase().includes(`${slug.toLowerCase()}.`)
+    key.toLowerCase().includes(`/${slug.toLowerCase()}.`)
   );
-  return matchingKey ? (images[matchingKey] as string) : null;
+  // Puxamos a propriedade .default da imagem
+  return matchingKey ? images[matchingKey].default : null;
 };
 
 const AttorneyDetail = () => {
