@@ -1,77 +1,86 @@
-import logo from "@/assets/friedland-law-gold-logo.png";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
-import { locations } from "@/data/locations";
+import { Phone, Mail, MapPin } from "lucide-react";
+import logo from "@/assets/friedland-law-gold-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-navy text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Col 1 - Brand */}
-          <div>
-            <Link to="/" className="inline-block mb-2">
-              <img src={logo} alt="Friedland Law" className="h-14 w-auto" />
+    <footer className="bg-navy text-white pt-16 pb-8 border-t border-white/10">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+          
+          {/* Coluna 1 - Logo e Info (Ajustada com lg:pl-8 para empurrar levemente para a direita) */}
+          <div className="lg:pl-8">
+            <Link to="/" className="inline-block mb-6">
+              <img src={logo} alt="Friedland Law" className="h-16 w-auto" />
             </Link>
-            <p className="mt-3 text-sm text-primary-foreground/70 italic">Your Fight. Our Battle.™</p>
-            <div className="flex gap-4 mt-6">
-              {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="text-primary-foreground/50 hover:text-gold transition-colors" aria-label="Social media">
-                  <Icon size={20} />
-                </a>
-              ))}
+            <p className="text-white/70 text-sm mb-6 leading-relaxed">
+              Your Case Isn't Just a Number. It's Your Life. We provide direct attorney access for personal injury cases across Florida, New York, and New Jersey.
+            </p>
+            <div className="flex flex-col gap-3">
+              <a href="tel:800-210-4878" className="flex items-center gap-2 text-white/80 hover:text-gold transition-colors text-sm">
+                <Phone size={16} className="text-gold" /> 800-210-HURT
+              </a>
+              <a href="mailto:myattorney@friedlandlaw.com" className="flex items-center gap-2 text-white/80 hover:text-gold transition-colors text-sm">
+                <Mail size={16} className="text-gold" /> myattorney@friedlandlaw.com
+              </a>
             </div>
           </div>
 
-          {/* Col 2 - Quick Links */}
-          <div>
-            <h4 className="font-bold text-sm uppercase tracking-wider text-gold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {["Practice Areas", "Attorneys", "Results", "About", "Contact", "Resources", "FAQ"].map(link => (
-                <li key={link}>
-                  <Link to={`/${link.toLowerCase().replace(" ", "-")}`} className="text-sm text-primary-foreground/70 hover:text-gold transition-colors">
-                    {link}
+          {/* Coluna 2 - Quick Links */}
+          <div className="lg:justify-self-center">
+            <h3 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Quick Links</h3>
+            <ul className="space-y-3">
+              {["Home", "About Us", "Attorneys", "Practice Areas", "Results", "Contact Us"].map((item) => (
+                <li key={item}>
+                  <Link to={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "-")}`} className="text-white/70 hover:text-gold transition-colors text-sm">
+                    {item}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3 - Offices */}
+          {/* Coluna 3 - Practice Areas */}
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-wider text-gold mb-4">Our Offices</h4>
+            <h3 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Practice Areas</h3>
             <ul className="space-y-3">
-              {locations.map(loc => (
-                <li key={loc.slug} className="text-sm text-primary-foreground/70">
-                  <span className="font-medium text-primary-foreground">{loc.city}, {loc.state}</span><br />
-                  {loc.address}
+              {["Car Accident", "Truck Accident", "Motorcycle Accident", "Slip & Fall", "Wrongful Death", "Brain Injury"].map((item) => (
+                <li key={item}>
+                  <Link to={`/practice-areas/${item.toLowerCase().replace(/ /g, "-").replace("&", "and")}`} className="text-white/70 hover:text-gold transition-colors text-sm">
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4 - Contact */}
+          {/* Coluna 4 - Locations */}
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-wider text-gold mb-4">Contact Us</h4>
-            <div className="space-y-3 text-sm text-primary-foreground/70">
-              <a href="tel:800-210-4878" className="block hover:text-gold transition-colors font-medium text-primary-foreground">
-                800-210-HURT
-              </a>
-              <a href="mailto:info@friedlandlaw.com" className="block hover:text-gold transition-colors">
-                info@friedlandlaw.com
-              </a>
-              <p>Available 24/7</p>
-            </div>
+            <h3 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Locations</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-2 text-sm text-white/70">
+                <MapPin size={16} className="text-gold shrink-0 mt-0.5" />
+                <span><strong>New York:</strong> 50 Broad St #1502<br/>New York, NY 10004</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-white/70">
+                <MapPin size={16} className="text-gold shrink-0 mt-0.5" />
+                <span><strong>Florida:</strong> 6620 Southpoint Dr S #115-E<br/>Jacksonville, FL 32216</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-white/70">
+                <MapPin size={16} className="text-gold shrink-0 mt-0.5" />
+                <span><strong>New Jersey:</strong> 70 Grand Ave #107<br/>River Edge, NJ 07661</span>
+              </li>
+            </ul>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-primary-foreground/10">
-        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-primary-foreground/50">
-          <p>© 2026 Friedland Law. All rights reserved.</p>
-          <div className="flex gap-4 mt-2 sm:mt-0">
-            <Link to="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+        </div>
+
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/50 text-xs text-center md:text-left lg:pl-8">
+            © {new Date().getFullYear()} Friedland Law. All rights reserved.
+          </p>
+          <div className="flex gap-4 text-xs text-white/50">
+            <Link to="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link to="/disclaimer" className="hover:text-gold transition-colors">Disclaimer</Link>
           </div>
         </div>
