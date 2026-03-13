@@ -1,3 +1,4 @@
+import logo from "@/assets/friedland-law-gold-logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
@@ -27,8 +28,8 @@ const Header = () => {
       {/* Main Nav */}
       <div className="sticky top-0 bg-background shadow-sm z-50">
         <div className="container mx-auto px-4 flex items-center justify-between h-16">
-          <Link to="/" className="font-bold text-xl text-navy tracking-tight">
-            FRIEDLAND <span className="text-gold">LAW</span>
+        <Link to="/" className="flex items-center">
+            <img src={logo} alt="Friedland Law" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
