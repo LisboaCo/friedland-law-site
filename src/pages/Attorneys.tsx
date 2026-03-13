@@ -6,56 +6,85 @@ import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { attorneys, seniorStaff } from "@/data/attorneys";
 import { User } from "lucide-react";
 
-const AttorneyCard = ({ attorney }: { attorney: typeof attorneys[0] }) => (
-  <Link to={`/attorneys/${attorney.slug}`} className="group border border-border rounded-xl overflow-hidden hover:border-gold transition-all">
-    <div className="aspect-[3/4] bg-gray-light flex items-center justify-center">
-      <User className="text-muted-foreground/30" size={80} />
-    </div>
-    <div className="p-5">
-      <h3 className="font-bold text-navy group-hover:text-gold transition-colors">{attorney.name}</h3>
-      <p className="text-sm text-muted-foreground">{attorney.title}</p>
-      <span className="text-sm text-gold font-medium mt-2 inline-block">Meet {attorney.name.split(" ")[0]} →</span>
-    </div>
-  </Link>
-);
+// Carrega dinamicamente todas as imagens da pasta assets
+const images = import.meta.glob<{ default: string }>('@/assets/*.{png,jpg,jpeg,webp}', { eager: true });
+
+const getImageForSlug = (slug: string) => {
+  const matchingKey = Object.keys(images).find(key => key.includes(`/${slug}.`));
+  return matchingKey ? images[matchingKey].default : null;
+};
+
+const AttorneyCard = ({ attorney }: { attorney: typeof attorneys[0] }) => {
+  const imageUrl = getImageForSlug(attorney.slug);
+
+  return (
+    <Link to={`/attorneys/${attorney.slug}`} className="group border border-border rounded-xl overflow-hidden hover:border-gold transition-all bg-background flex flex-col h-full shadow-sm hover:shadow-md">
+      <div className="aspect-[3/4] bg-gray-light flex items-center justify-center overflow-hidden">
+        {imageUrl ? (
+          <img src={imageUrl} alt={attorney.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        ) : (
+          <User className="text-muted-foreground/30" size={80} />
+        )}
+      </div>
+      <div className="p-5 flex flex-col flex-grow text-center">
+        <h3 className="font-bold text-navy group-hover:text-gold transition-colors text-lg">{attorney.name}</h3>
+        <p className="text-sm text-muted-foreground mb-3">{attorney.title}</p>
+        <span className="text-sm text-gold font-medium mt-auto inline-block">View Profile →</span>
+      </div>
+    </Link>
+  );
+};
 
 const Attorneys = () => {
   return (
     <>
       <Helmet>
-        <title>Our Attorneys | Friedland Law</title>
-        <meta name="description" content="Meet the attorneys at Friedland Law. Direct attorney access on every case." />
+        <title>Our Attorneys & Staff | Friedland Law</title>
+        <meta name="description" content="Meet the attorneys and senior staff at Friedland Law. Direct attorney access on every case." />
       </Helmet>
       <Header />
       <main>
         <section className="bg-navy py-20">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold text-primary-foreground mb-4">Our Attorneys</h1>
-            <p className="text-primary-foreground/70 max-w-xl mx-auto">Every client gets direct access to the attorney handling their case.</p>
+            <h1 className="text-4xl font-bold text-primary-foreground mb-4">Our Lawyers</h1>
+            <p className="text-primary-foreground/70 max-w-2xl mx-auto">
+              Our firm is dedicated to service first. We are committed to the concept of traditional lawyers sworn to preserving the rights of our clients.
+            </p>
           </div>
         </section>
 
-        <section className="py-16">
+        {/* Lawyers Section */}
+        <section className="py-16 bg-gray-light">
           <div className="container mx-auto px-4">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {attorneys.map(a => <AttorneyCard key={a.slug} attorney={a} />)}
             </div>
           </div>
         </section>
 
-        <section className="py-16 bg-gray-light">
+        {/* Senior Staff Section */}
+        <section className="py-16 bg-background border-t border-border">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-charcoal mb-8">Senior Staff</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {seniorStaff.map(s => (
-                <div key={s.slug} className="border border-border rounded-xl p-6 bg-background text-center">
-                  <div className="w-20 h-20 rounded-full bg-navy text-primary-foreground flex items-center justify-center font-bold text-xl mx-auto mb-4">
-                    {s.name.split(" ").map(n => n[0]).join("")}
+            <h2 className="text-3xl font-bold text-charcoal mb-10 text-center">Our Senior Staff</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {seniorStaff.map(s => {
+                const imageUrl = getImageForSlug(s.slug);
+                return (
+                  <div key={s.slug} className="border border-border rounded-xl overflow-hidden bg-gray-light text-center transition-all hover:shadow-md flex flex-col h-full">
+                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
+                      {imageUrl ? (
+                        <img src={imageUrl} alt={s.name} className="w-full h-full object-cover object-top" />
+                      ) : (
+                        <User className="text-muted-foreground/30" size={60} />
+                      )}
+                    </div>
+                    <div className="p-4 flex flex-col flex-grow justify-center bg-background">
+                      <h3 className="font-bold text-navy text-[15px]">{s.name}</h3>
+                      <p className="text-xs text-muted-foreground mt-1">{s.staffTitle}</p>
+                    </div>
                   </div>
-                  <h3 className="font-bold text-navy">{s.name}</h3>
-                  <p className="text-sm text-muted-foreground">{s.staffTitle}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
