@@ -10,7 +10,6 @@ import { User } from "lucide-react";
 const images = import.meta.glob<{ default: string }>('../assets/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}', { eager: true });
 
 const getImageForSlug = (slug: string) => {
-  // Transforma tanto a busca quanto o nome do arquivo em minúsculas para evitar erros de case-sensitive
   const matchingKey = Object.keys(images).find(key => 
     key.toLowerCase().includes(`/${slug.toLowerCase()}.`)
   );
@@ -29,10 +28,11 @@ const AttorneyCard = ({ attorney }: { attorney: typeof attorneys[0] }) => {
           <User className="text-muted-foreground/30" size={80} />
         )}
       </div>
-      <div className="p-5 flex flex-col flex-grow text-center">
-        <h3 className="font-bold text-navy group-hover:text-gold transition-colors text-lg">{attorney.name}</h3>
-        <p className="text-sm text-muted-foreground mb-3">{attorney.title}</p>
-        <span className="text-sm text-gold font-medium mt-auto inline-block">View Profile →</span>
+      {/* Ajuste de espaçamento responsivo (p-3 no celular, p-5 no desktop) */}
+      <div className="p-3 sm:p-5 flex flex-col flex-grow text-center">
+        <h3 className="font-bold text-navy group-hover:text-gold transition-colors text-base sm:text-lg">{attorney.name}</h3>
+        <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">{attorney.title}</p>
+        <span className="text-xs sm:text-sm text-gold font-medium mt-auto inline-block">View Profile →</span>
       </div>
     </Link>
   );
@@ -59,7 +59,8 @@ const Attorneys = () => {
         {/* Lawyers Section */}
         <section className="py-16 bg-gray-light">
           <div className="container mx-auto px-4">
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {/* AQUI ESTÁ O AJUSTE: grid-cols-2 como base (mobile) */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
               {attorneys.map(a => <AttorneyCard key={a.slug} attorney={a} />)}
             </div>
           </div>
@@ -69,7 +70,8 @@ const Attorneys = () => {
         <section className="py-16 bg-background border-t border-border">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-charcoal mb-10 text-center">Our Senior Staff</h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {/* AQUI ESTÁ O AJUSTE: grid-cols-2 como base (mobile) */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
               {seniorStaff.map(s => {
                 const imageUrl = getImageForSlug(s.slug);
                 return (
@@ -81,9 +83,10 @@ const Attorneys = () => {
                         <User className="text-muted-foreground/30" size={60} />
                       )}
                     </div>
-                    <div className="p-4 flex flex-col flex-grow justify-center bg-background">
-                      <h3 className="font-bold text-navy text-[15px]">{s.name}</h3>
-                      <p className="text-xs text-muted-foreground mt-1">{s.staffTitle}</p>
+                    {/* Ajuste de espaçamento responsivo */}
+                    <div className="p-3 sm:p-4 flex flex-col flex-grow justify-center bg-background">
+                      <h3 className="font-bold text-navy text-[13px] sm:text-[15px]">{s.name}</h3>
+                      <p className="text-[11px] sm:text-xs text-muted-foreground mt-1">{s.staffTitle}</p>
                     </div>
                   </div>
                 );
