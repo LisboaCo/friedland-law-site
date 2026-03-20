@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { Scale, Phone, ShieldCheck, DollarSign } from "lucide-react";
+// 1. O arquivo da imagem que você fará o upload:
+import skylineBg from "@/assets/skyline-bg.jpg";
 
 const reasons = [
   {
@@ -47,11 +49,9 @@ const ReasonCard = ({ title, description, icon: Icon }: any) => {
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className="relative overflow-hidden bg-white/5 border border-white/10 p-8 rounded-xl group transition-colors duration-300 hover:border-gold/50 cursor-default"
+      className="relative overflow-hidden bg-white/5 border border-white/10 p-8 rounded-xl group transition-colors duration-300 hover:border-gold/50 cursor-default backdrop-blur-sm"
     >
-      {/* Efeito de brilho Dourado (Gold Glow) que segue o mouse.
-        O rgba(197, 165, 114) é uma representação em RGB do seu dourado (gold).
-      */}
+      {/* Efeito de brilho Dourado (Gold Glow) que segue o mouse. */}
       <div
         className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
@@ -61,13 +61,13 @@ const ReasonCard = ({ title, description, icon: Icon }: any) => {
 
       {/* Conteúdo da carta (z-10 para ficar acima do brilho) */}
       <div className="relative z-10">
-        <div className="w-14 h-14 bg-navy/50 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-gold/30 transition-colors">
+        <div className="w-14 h-14 bg-navy/50 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-gold/30 transition-colors backdrop-blur-md">
           <Icon className="w-7 h-7 text-gold" />
         </div>
         <h3 className="text-xl font-bold text-white mb-4 group-hover:text-gold transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-white/70 leading-relaxed text-sm md:text-base">{description}</p>
+        <p className="text-white/80 leading-relaxed text-sm md:text-base">{description}</p>
       </div>
     </div>
   );
@@ -75,14 +75,25 @@ const ReasonCard = ({ title, description, icon: Icon }: any) => {
 
 const ProblemAmplification = () => {
   return (
-    <section className="bg-navy py-20 lg:py-28">
-      <div className="container mx-auto px-4">
+    // 2. Container principal com a imagem de fundo e efeito paralax (bg-fixed)
+    <section
+      className="relative py-20 lg:py-28 bg-fixed bg-cover bg-center"
+      style={{ backgroundImage: `url(${skylineBg})` }}
+    >
+      {/* 3. Máscara azul transparente (85% de opacidade). 
+          Se quiseres ver MAIS a imagem, muda para bg-navy/70 ou bg-navy/60 
+          Se quiseres ver MENOS a imagem, muda para bg-navy/90 ou bg-navy/95 
+      */}
+      <div className="absolute inset-0 bg-navy/85 z-0"></div>
+
+      {/* Conteúdo real da seção (z-10 para ficar por cima do fundo e da máscara) */}
+      <div className="container mx-auto px-4 relative z-10">
         {/* Título da Seção */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
             Why Choose <span className="text-gold">Friedland & Associates?</span>
           </h2>
-          <p className="text-lg text-white/80">
+          <p className="text-lg text-white/90 drop-shadow-md">
             When you're dealing with the aftermath of an accident, you need a legal team that puts your recovery first.
             Here is why clients trust us with their most critical cases.
           </p>
