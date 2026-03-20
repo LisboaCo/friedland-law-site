@@ -1,66 +1,71 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-// Usando a imagem hero-bg como placeholder genérico para não quebrar a build
-import placeholderImg from "@/assets/hero-bg.jpg";
 
-// Dados dos vereditos e resultados (Estilo Morgan & Morgan)
+// 1. Importações com caminhos relativos (mais seguros).
+// AVISO: Se alguma das tuas imagens for .png ou .jpeg em vez de .jpg,
+// basta alterares a extensão aqui nestas linhas!
+import carImg from "../../assets/car-accident.jpg";
+import truckImg from "../../assets/truck-accident.jpg";
+import motoImg from "../../assets/motorcycle-accident.jpg";
+import slipImg from "../../assets/slip-and-fall.jpg";
+import deathImg from "../../assets/wrongful-death.jpg";
+import brainImg from "../../assets/brain-injury.jpg";
+
+// Dados dos vereditos e resultados
 const caseResults = [
   {
     title: "Car Accidents",
     highlight: "$5.2 Million",
     subtitle: "Jury Verdict vs. $100k Offer",
-    image: placeholderImg,
+    image: carImg, // Variável da imagem correspondente
     link: "/results/car-accidents",
   },
   {
     title: "Truck Accidents",
     highlight: "$8.5 Million",
     subtitle: "Settlement Secured",
-    image: placeholderImg,
+    image: truckImg, // Variável da imagem correspondente
     link: "/results/truck-accidents",
   },
   {
     title: "Motorcycle Accidents",
     highlight: "20x",
     subtitle: "More Than Initial Insurance Offer",
-    image: placeholderImg,
+    image: motoImg, // Variável da imagem correspondente
     link: "/results/motorcycle-accidents",
   },
   {
     title: "Slip & Fall",
     highlight: "$2.1 Million",
     subtitle: "Premises Liability Verdict",
-    image: placeholderImg,
+    image: slipImg, // Variável da imagem correspondente
     link: "/results/slip-and-fall",
   },
   {
     title: "Wrongful Death",
     highlight: "$12 Million",
     subtitle: "Confidential Settlement",
-    image: placeholderImg,
+    image: deathImg, // Variável da imagem correspondente
     link: "/results/wrongful-death",
   },
   {
     title: "Brain Injuries",
     highlight: "$4.5 Million",
     subtitle: "Trial Verdict for TBI",
-    image: placeholderImg,
+    image: brainImg, // Variável da imagem correspondente
     link: "/results/brain-injuries",
   },
 ];
 
 const ResultsSection = () => {
   return (
-    // 1. Fundo alterado para branco (bg-white)
     <section className="py-20 lg:py-28 bg-white relative">
       <div className="container mx-auto px-4 relative z-10">
         {/* Cabeçalho da Seção de Resultados */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          {/* 2. Fonte alterada para text-navy com destaque em text-gold */}
           <h2 className="text-4xl md:text-6xl font-bold text-navy mb-6 uppercase tracking-tight">
             +$100 MILLION <span className="text-gold">RECOVERED FOR CLIENTS.</span>
           </h2>
-          {/* 3. Subtítulo em cinza escuro para manter o contraste perfeito no fundo branco */}
           <p className="text-lg text-gray-600">
             We don't just handle cases; we maximize them. Select your accident type below to see how we've defeated the
             insurance companies in situations just like yours.
@@ -73,7 +78,6 @@ const ResultsSection = () => {
             <a
               href={result.link}
               key={index}
-              // 4. Adicionada uma leve sombra (shadow-xl) aos cards para destacá-los do fundo branco
               className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-2xl block bg-black shadow-xl"
             >
               {/* Imagem de Fundo com Zoom no Hover */}
@@ -83,7 +87,7 @@ const ResultsSection = () => {
                 className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-40"
               />
 
-              {/* Overlay Escuro: Mantido escuro para garantir que os textos em dourado e branco brilhem! */}
+              {/* Overlay Escuro */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent transition-opacity duration-500 group-hover:via-black/70"></div>
 
               {/* Conteúdo do Card (Fica na parte inferior) */}
