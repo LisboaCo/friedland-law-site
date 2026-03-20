@@ -11,9 +11,10 @@ const ProblemAmplification = () => {
           {/* Big Firms */}
           <div className="bg-gray-light border border-border rounded-xl p-8">
             <Factory className="text-muted-foreground mb-4" size={40} />
-            <h3 className="text-xl font-bold text-charcoal mb-3">At Big Firms</h3>
+            <h3 className="text-xl font-bold text-charcoal mb-3">At Most Firms</h3>
             <p className="text-muted-foreground">
-              Your case is assigned to a case manager handling hundreds of files. You never speak to your attorney.
+              Your case gets handed to a case manager buried in hundreds of files. You never speak to the attorney
+              actually fighting for you.
             </p>
           </div>
           {/* Friedland */}
