@@ -1,17 +1,23 @@
 import CTAButton from "../CTAButton";
 import { Phone } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroVideo from "@/assets/hero-video-friedland.mp4";
 import headerImg from "@/assets/header-img.png";
 
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-[600px] flex items-center overflow-hidden bg-navy">
       
-      {/* 1. Imagem de Background (hero-bg) com efeito de escurecimento para leitura */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
+      {/* 1. Vídeo de Background com efeito de escurecimento para leitura */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-navy/80 mix-blend-multiply"></div>
         {/* Degradê para transição suave com o restante do site */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent"></div>
