@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { Car, Truck, Bike, Smartphone, AlertTriangle, HardHat, Stethoscope, Heart, Brain, Dog, Footprints, Building, type LucideIcon } from "lucide-react";
+import { Car, Truck, Bike, Smartphone, AlertTriangle, HardHat, Stethoscope, Heart, Brain, Dog, Footprints, Building, Anchor, Baby, type LucideIcon } from "lucide-react";
 import CTAButton from "../CTAButton";
 import { practiceAreas } from "@/data/practiceAreas";
 
 const iconMap: Record<string, LucideIcon> = {
-  Car, Truck, Bike, Smartphone, AlertTriangle, HardHat, Stethoscope, Heart, Brain, Dog, Footprints, Building,
+  Car, Truck, Bike, Smartphone, AlertTriangle, HardHat, Stethoscope, Heart, Brain, Dog, Footprints, Building, Anchor, Baby,
 };
 
 const PracticeAreasGrid = () => {
